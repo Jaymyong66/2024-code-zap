@@ -4,6 +4,7 @@ import Template from '@/pages/Template';
 import TemplateList from '@/pages/TemplateList';
 import UploadsTemplate from '@/pages/UploadsTemplate';
 import { Header } from '@/components/Header';
+import { ErrorPage } from '@/components/ErrorPage';
 
 const Layout = () => {
   const style = { maxWidth: '1024px', margin: 'auto', padding: '0 2rem' };
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
         path: 'templates/uploads',
         element: <UploadsTemplate />,
       },
+      { path: '*', element: <ErrorPage errorMessage={'잘못된 경로 입니다.'} /> },
     ],
   },
 ]);

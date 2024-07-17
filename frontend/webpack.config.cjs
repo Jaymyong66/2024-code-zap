@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/2024-code-zap/frontend/dist',
   },
   resolve: {
     alias: {
@@ -29,6 +29,7 @@ module.exports = {
             options: {
               name: '[path][name].[ext]',
               outputPath: 'assets/images',
+              publicPath: `/2024-code-zap/frontend/dist/assets/images`,
             },
           },
         ],
