@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 
 import { tags as mockTags } from '@/mocks/tagList.json';
-import { AuthProvider } from '../../contexts/authContext';
+import { AuthProvider } from '../../contexts/AuthContext';
 import { useTagListQuery } from '../tag/useTagListQuery';
 
 const queryClient = new QueryClient();
