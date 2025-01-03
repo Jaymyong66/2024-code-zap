@@ -53,11 +53,22 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: S3 업로드
-        run: aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}/dev/ --delete
+        run: |
+          if [ "${{ github.ref_name }}" == "main" ]; then
+            aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}/prod/ --delete
+          else
+            aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}/dev/ --delete
+          fi
         working-directory: ${{ env.frontend-directory }}
 
       - name: CloudFront 캐시 무효화
         run: |
-          aws cloudfront create-invalidation \
+          if [ "${{ github.ref_name }}" == "main" ]; then
+            aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }} \
+            --paths "/*"
+          else
+            aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_DEV }} \
             --paths "/*"
+          fi
