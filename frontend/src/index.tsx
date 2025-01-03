@@ -40,8 +40,6 @@ const enableMocking = async () => {
   await worker.start();
 };
 
-//
-
 enableMocking().then(() => {
   root.render(
     <React.StrictMode>
