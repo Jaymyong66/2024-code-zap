@@ -49,6 +49,7 @@ jobs:
 
       - name: S3 업로드
         run: aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}/dev/ --delete
+        working-directory: ${{ env.frontend-directory }}
 
       - name: CloudFront 캐시 무효화
         run: |
